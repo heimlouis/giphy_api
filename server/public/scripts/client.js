@@ -34,10 +34,8 @@ const randomController = app.controller('randomController', ['$http', '$sce', fu
 
     self.randomGif = function() {
         console.log('in random gif');
-        $http({
-            method: 'GET',
-            url: `https://api.giphy.com/v1/gifs/random?&api_key=Jq4es5Wn9HOx3oIXG9RrWootM1W5RJOT`
-        }).then(function(response){
+        $http.get('/giphy/router')
+        .then(function(response){
             console.log('response', response.data.data);
             let image = response.data.data;
              let url = $sce.trustAsResourceUrl(image.embed_url);
